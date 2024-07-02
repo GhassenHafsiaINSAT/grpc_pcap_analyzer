@@ -1,6 +1,9 @@
 # Tcpdump 
 
-- Tcpdump captures network traffic and prints it out for you.  
+- Tcpdump is a packet sniffer, it captures traffic that passes through a machine.  
+- It operates on a packet level, it means it captures the actual packets flying in and out your computer.  
+- You can save packets into files.
+- You can apply filters on the packets, it means ignoring packets that you are not interested to see.   
 
 ## Network interface 
 
