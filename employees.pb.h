@@ -45,22 +45,25 @@ struct TableStruct {
 };
 void AddDescriptors();
 }  // namespace protobuf_employees_2eproto
+namespace ACTIA {
 class employee;
 class employeeDefaultTypeInternal;
 extern employeeDefaultTypeInternal _employee_default_instance_;
 class employees;
 class employeesDefaultTypeInternal;
 extern employeesDefaultTypeInternal _employees_default_instance_;
+}  // namespace ACTIA
 namespace google {
 namespace protobuf {
-template<> ::employee* Arena::CreateMaybeMessage<::employee>(Arena*);
-template<> ::employees* Arena::CreateMaybeMessage<::employees>(Arena*);
+template<> ::ACTIA::employee* Arena::CreateMaybeMessage<::ACTIA::employee>(Arena*);
+template<> ::ACTIA::employees* Arena::CreateMaybeMessage<::ACTIA::employees>(Arena*);
 }  // namespace protobuf
 }  // namespace google
+namespace ACTIA {
 
 // ===================================================================
 
-class employee : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:employee) */ {
+class employee : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ACTIA.employee) */ {
  public:
   employee();
   virtual ~employee();
@@ -187,7 +190,7 @@ class employee : public ::google::protobuf::Message /* @@protoc_insertion_point(
   float salary() const;
   void set_salary(float value);
 
-  // @@protoc_insertion_point(class_scope:employee)
+  // @@protoc_insertion_point(class_scope:ACTIA.employee)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -200,7 +203,7 @@ class employee : public ::google::protobuf::Message /* @@protoc_insertion_point(
 };
 // -------------------------------------------------------------------
 
-class employees : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:employees) */ {
+class employees : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ACTIA.employees) */ {
  public:
   employees();
   virtual ~employees();
@@ -287,23 +290,23 @@ class employees : public ::google::protobuf::Message /* @@protoc_insertion_point
 
   // accessors -------------------------------------------------------
 
-  // repeated .employee employees = 3;
-  int employees_size() const;
-  void clear_employees();
-  static const int kEmployeesFieldNumber = 3;
-  ::employee* mutable_employees(int index);
-  ::google::protobuf::RepeatedPtrField< ::employee >*
-      mutable_employees();
-  const ::employee& employees(int index) const;
-  ::employee* add_employees();
-  const ::google::protobuf::RepeatedPtrField< ::employee >&
-      employees() const;
+  // repeated .ACTIA.employee ensemble = 3;
+  int ensemble_size() const;
+  void clear_ensemble();
+  static const int kEnsembleFieldNumber = 3;
+  ::ACTIA::employee* mutable_ensemble(int index);
+  ::google::protobuf::RepeatedPtrField< ::ACTIA::employee >*
+      mutable_ensemble();
+  const ::ACTIA::employee& ensemble(int index) const;
+  ::ACTIA::employee* add_ensemble();
+  const ::google::protobuf::RepeatedPtrField< ::ACTIA::employee >&
+      ensemble() const;
 
-  // @@protoc_insertion_point(class_scope:employees)
+  // @@protoc_insertion_point(class_scope:ACTIA.employees)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::employee > employees_;
+  ::google::protobuf::RepeatedPtrField< ::ACTIA::employee > ensemble_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_employees_2eproto::TableStruct;
 };
@@ -323,13 +326,13 @@ inline void employee::clear_id() {
   id_ = 0;
 }
 inline ::google::protobuf::int32 employee::id() const {
-  // @@protoc_insertion_point(field_get:employee.ID)
+  // @@protoc_insertion_point(field_get:ACTIA.employee.ID)
   return id_;
 }
 inline void employee::set_id(::google::protobuf::int32 value) {
   
   id_ = value;
-  // @@protoc_insertion_point(field_set:employee.ID)
+  // @@protoc_insertion_point(field_set:ACTIA.employee.ID)
 }
 
 // string FirstName = 2;
@@ -337,41 +340,41 @@ inline void employee::clear_firstname() {
   firstname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& employee::firstname() const {
-  // @@protoc_insertion_point(field_get:employee.FirstName)
+  // @@protoc_insertion_point(field_get:ACTIA.employee.FirstName)
   return firstname_.GetNoArena();
 }
 inline void employee::set_firstname(const ::std::string& value) {
   
   firstname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:employee.FirstName)
+  // @@protoc_insertion_point(field_set:ACTIA.employee.FirstName)
 }
 #if LANG_CXX11
 inline void employee::set_firstname(::std::string&& value) {
   
   firstname_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:employee.FirstName)
+  // @@protoc_insertion_point(field_set_rvalue:ACTIA.employee.FirstName)
 }
 #endif
 inline void employee::set_firstname(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   firstname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:employee.FirstName)
+  // @@protoc_insertion_point(field_set_char:ACTIA.employee.FirstName)
 }
 inline void employee::set_firstname(const char* value, size_t size) {
   
   firstname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:employee.FirstName)
+  // @@protoc_insertion_point(field_set_pointer:ACTIA.employee.FirstName)
 }
 inline ::std::string* employee::mutable_firstname() {
   
-  // @@protoc_insertion_point(field_mutable:employee.FirstName)
+  // @@protoc_insertion_point(field_mutable:ACTIA.employee.FirstName)
   return firstname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* employee::release_firstname() {
-  // @@protoc_insertion_point(field_release:employee.FirstName)
+  // @@protoc_insertion_point(field_release:ACTIA.employee.FirstName)
   
   return firstname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -382,7 +385,7 @@ inline void employee::set_allocated_firstname(::std::string* firstname) {
     
   }
   firstname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), firstname);
-  // @@protoc_insertion_point(field_set_allocated:employee.FirstName)
+  // @@protoc_insertion_point(field_set_allocated:ACTIA.employee.FirstName)
 }
 
 // string LastName = 3;
@@ -390,41 +393,41 @@ inline void employee::clear_lastname() {
   lastname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& employee::lastname() const {
-  // @@protoc_insertion_point(field_get:employee.LastName)
+  // @@protoc_insertion_point(field_get:ACTIA.employee.LastName)
   return lastname_.GetNoArena();
 }
 inline void employee::set_lastname(const ::std::string& value) {
   
   lastname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:employee.LastName)
+  // @@protoc_insertion_point(field_set:ACTIA.employee.LastName)
 }
 #if LANG_CXX11
 inline void employee::set_lastname(::std::string&& value) {
   
   lastname_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:employee.LastName)
+  // @@protoc_insertion_point(field_set_rvalue:ACTIA.employee.LastName)
 }
 #endif
 inline void employee::set_lastname(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   lastname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:employee.LastName)
+  // @@protoc_insertion_point(field_set_char:ACTIA.employee.LastName)
 }
 inline void employee::set_lastname(const char* value, size_t size) {
   
   lastname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:employee.LastName)
+  // @@protoc_insertion_point(field_set_pointer:ACTIA.employee.LastName)
 }
 inline ::std::string* employee::mutable_lastname() {
   
-  // @@protoc_insertion_point(field_mutable:employee.LastName)
+  // @@protoc_insertion_point(field_mutable:ACTIA.employee.LastName)
   return lastname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* employee::release_lastname() {
-  // @@protoc_insertion_point(field_release:employee.LastName)
+  // @@protoc_insertion_point(field_release:ACTIA.employee.LastName)
   
   return lastname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -435,7 +438,7 @@ inline void employee::set_allocated_lastname(::std::string* lastname) {
     
   }
   lastname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), lastname);
-  // @@protoc_insertion_point(field_set_allocated:employee.LastName)
+  // @@protoc_insertion_point(field_set_allocated:ACTIA.employee.LastName)
 }
 
 // float salary = 4;
@@ -443,47 +446,47 @@ inline void employee::clear_salary() {
   salary_ = 0;
 }
 inline float employee::salary() const {
-  // @@protoc_insertion_point(field_get:employee.salary)
+  // @@protoc_insertion_point(field_get:ACTIA.employee.salary)
   return salary_;
 }
 inline void employee::set_salary(float value) {
   
   salary_ = value;
-  // @@protoc_insertion_point(field_set:employee.salary)
+  // @@protoc_insertion_point(field_set:ACTIA.employee.salary)
 }
 
 // -------------------------------------------------------------------
 
 // employees
 
-// repeated .employee employees = 3;
-inline int employees::employees_size() const {
-  return employees_.size();
+// repeated .ACTIA.employee ensemble = 3;
+inline int employees::ensemble_size() const {
+  return ensemble_.size();
 }
-inline void employees::clear_employees() {
-  employees_.Clear();
+inline void employees::clear_ensemble() {
+  ensemble_.Clear();
 }
-inline ::employee* employees::mutable_employees(int index) {
-  // @@protoc_insertion_point(field_mutable:employees.employees)
-  return employees_.Mutable(index);
+inline ::ACTIA::employee* employees::mutable_ensemble(int index) {
+  // @@protoc_insertion_point(field_mutable:ACTIA.employees.ensemble)
+  return ensemble_.Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::employee >*
-employees::mutable_employees() {
-  // @@protoc_insertion_point(field_mutable_list:employees.employees)
-  return &employees_;
+inline ::google::protobuf::RepeatedPtrField< ::ACTIA::employee >*
+employees::mutable_ensemble() {
+  // @@protoc_insertion_point(field_mutable_list:ACTIA.employees.ensemble)
+  return &ensemble_;
 }
-inline const ::employee& employees::employees(int index) const {
-  // @@protoc_insertion_point(field_get:employees.employees)
-  return employees_.Get(index);
+inline const ::ACTIA::employee& employees::ensemble(int index) const {
+  // @@protoc_insertion_point(field_get:ACTIA.employees.ensemble)
+  return ensemble_.Get(index);
 }
-inline ::employee* employees::add_employees() {
-  // @@protoc_insertion_point(field_add:employees.employees)
-  return employees_.Add();
+inline ::ACTIA::employee* employees::add_ensemble() {
+  // @@protoc_insertion_point(field_add:ACTIA.employees.ensemble)
+  return ensemble_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::employee >&
-employees::employees() const {
-  // @@protoc_insertion_point(field_list:employees.employees)
-  return employees_;
+inline const ::google::protobuf::RepeatedPtrField< ::ACTIA::employee >&
+employees::ensemble() const {
+  // @@protoc_insertion_point(field_list:ACTIA.employees.ensemble)
+  return ensemble_;
 }
 
 #ifdef __GNUC__
@@ -494,6 +497,7 @@ employees::employees() const {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace ACTIA
 
 // @@protoc_insertion_point(global_scope)
 

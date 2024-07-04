@@ -22,6 +22,7 @@
 namespace protobuf_employees_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_employees_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_employee;
 }  // namespace protobuf_employees_2eproto
+namespace ACTIA {
 class employeeDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<employee>
@@ -32,16 +33,17 @@ class employeesDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<employees>
       _instance;
 } _employees_default_instance_;
+}  // namespace ACTIA
 namespace protobuf_employees_2eproto {
 static void InitDefaultsemployee() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::_employee_default_instance_;
-    new (ptr) ::employee();
+    void* ptr = &::ACTIA::_employee_default_instance_;
+    new (ptr) ::ACTIA::employee();
     ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::employee::InitAsDefaultInstance();
+  ::ACTIA::employee::InitAsDefaultInstance();
 }
 
 ::google::protobuf::internal::SCCInfo<0> scc_info_employee =
@@ -51,11 +53,11 @@ static void InitDefaultsemployees() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::_employees_default_instance_;
-    new (ptr) ::employees();
+    void* ptr = &::ACTIA::_employees_default_instance_;
+    new (ptr) ::ACTIA::employees();
     ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::employees::InitAsDefaultInstance();
+  ::ACTIA::employees::InitAsDefaultInstance();
 }
 
 ::google::protobuf::internal::SCCInfo<1> scc_info_employees =
@@ -71,29 +73,29 @@ void InitDefaults() {
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::employee, _internal_metadata_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ACTIA::employee, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::employee, id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::employee, firstname_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::employee, lastname_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::employee, salary_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ACTIA::employee, id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ACTIA::employee, firstname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ACTIA::employee, lastname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ACTIA::employee, salary_),
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::employees, _internal_metadata_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ACTIA::employees, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::employees, employees_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ACTIA::employees, ensemble_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::employee)},
-  { 9, -1, sizeof(::employees)},
+  { 0, -1, sizeof(::ACTIA::employee)},
+  { 9, -1, sizeof(::ACTIA::employees)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_employee_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_employees_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::ACTIA::_employee_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::ACTIA::_employees_default_instance_),
 };
 
 void protobuf_AssignDescriptors() {
@@ -117,13 +119,13 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\017employees.proto\"K\n\010employee\022\n\n\002ID\030\001 \001("
-      "\005\022\021\n\tFirstName\030\002 \001(\t\022\020\n\010LastName\030\003 \001(\t\022\016"
-      "\n\006salary\030\004 \001(\002\")\n\temployees\022\034\n\temployees"
-      "\030\003 \003(\0132\t.employeeb\006proto3"
+      "\n\017employees.proto\022\005ACTIA\"K\n\010employee\022\n\n\002"
+      "ID\030\001 \001(\005\022\021\n\tFirstName\030\002 \001(\t\022\020\n\010LastName\030"
+      "\003 \001(\t\022\016\n\006salary\030\004 \001(\002\".\n\temployees\022!\n\010en"
+      "semble\030\003 \003(\0132\017.ACTIA.employeeb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 145);
+      descriptor, 157);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "employees.proto", &protobuf_RegisterTypes);
 }
@@ -139,6 +141,7 @@ struct StaticDescriptorInitializer {
   }
 } static_descriptor_initializer;
 }  // namespace protobuf_employees_2eproto
+namespace ACTIA {
 
 // ===================================================================
 
@@ -156,7 +159,7 @@ employee::employee()
   ::google::protobuf::internal::InitSCC(
       &protobuf_employees_2eproto::scc_info_employee.base);
   SharedCtor();
-  // @@protoc_insertion_point(constructor:employee)
+  // @@protoc_insertion_point(constructor:ACTIA.employee)
 }
 employee::employee(const employee& from)
   : ::google::protobuf::Message(),
@@ -173,7 +176,7 @@ employee::employee(const employee& from)
   ::memcpy(&id_, &from.id_,
     static_cast<size_t>(reinterpret_cast<char*>(&salary_) -
     reinterpret_cast<char*>(&id_)) + sizeof(salary_));
-  // @@protoc_insertion_point(copy_constructor:employee)
+  // @@protoc_insertion_point(copy_constructor:ACTIA.employee)
 }
 
 void employee::SharedCtor() {
@@ -185,7 +188,7 @@ void employee::SharedCtor() {
 }
 
 employee::~employee() {
-  // @@protoc_insertion_point(destructor:employee)
+  // @@protoc_insertion_point(destructor:ACTIA.employee)
   SharedDtor();
 }
 
@@ -209,7 +212,7 @@ const employee& employee::default_instance() {
 
 
 void employee::Clear() {
-// @@protoc_insertion_point(message_clear_start:employee)
+// @@protoc_insertion_point(message_clear_start:ACTIA.employee)
   ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -226,7 +229,7 @@ bool employee::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:employee)
+  // @@protoc_insertion_point(parse_start:ACTIA.employee)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
@@ -255,7 +258,7 @@ bool employee::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->firstname().data(), static_cast<int>(this->firstname().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "employee.FirstName"));
+            "ACTIA.employee.FirstName"));
         } else {
           goto handle_unusual;
         }
@@ -271,7 +274,7 @@ bool employee::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->lastname().data(), static_cast<int>(this->lastname().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "employee.LastName"));
+            "ACTIA.employee.LastName"));
         } else {
           goto handle_unusual;
         }
@@ -304,17 +307,17 @@ bool employee::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:employee)
+  // @@protoc_insertion_point(parse_success:ACTIA.employee)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:employee)
+  // @@protoc_insertion_point(parse_failure:ACTIA.employee)
   return false;
 #undef DO_
 }
 
 void employee::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:employee)
+  // @@protoc_insertion_point(serialize_start:ACTIA.employee)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -328,7 +331,7 @@ void employee::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->firstname().data(), static_cast<int>(this->firstname().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "employee.FirstName");
+      "ACTIA.employee.FirstName");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->firstname(), output);
   }
@@ -338,7 +341,7 @@ void employee::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->lastname().data(), static_cast<int>(this->lastname().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "employee.LastName");
+      "ACTIA.employee.LastName");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       3, this->lastname(), output);
   }
@@ -352,13 +355,13 @@ void employee::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
   }
-  // @@protoc_insertion_point(serialize_end:employee)
+  // @@protoc_insertion_point(serialize_end:ACTIA.employee)
 }
 
 ::google::protobuf::uint8* employee::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:employee)
+  // @@protoc_insertion_point(serialize_to_array_start:ACTIA.employee)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -372,7 +375,7 @@ void employee::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->firstname().data(), static_cast<int>(this->firstname().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "employee.FirstName");
+      "ACTIA.employee.FirstName");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->firstname(), target);
@@ -383,7 +386,7 @@ void employee::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->lastname().data(), static_cast<int>(this->lastname().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "employee.LastName");
+      "ACTIA.employee.LastName");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         3, this->lastname(), target);
@@ -398,12 +401,12 @@ void employee::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:employee)
+  // @@protoc_insertion_point(serialize_to_array_end:ACTIA.employee)
   return target;
 }
 
 size_t employee::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:employee)
+// @@protoc_insertion_point(message_byte_size_start:ACTIA.employee)
   size_t total_size = 0;
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -443,22 +446,22 @@ size_t employee::ByteSizeLong() const {
 }
 
 void employee::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:employee)
+// @@protoc_insertion_point(generalized_merge_from_start:ACTIA.employee)
   GOOGLE_DCHECK_NE(&from, this);
   const employee* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const employee>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:employee)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ACTIA.employee)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:employee)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ACTIA.employee)
     MergeFrom(*source);
   }
 }
 
 void employee::MergeFrom(const employee& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:employee)
+// @@protoc_insertion_point(class_specific_merge_from_start:ACTIA.employee)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::google::protobuf::uint32 cached_has_bits = 0;
@@ -481,14 +484,14 @@ void employee::MergeFrom(const employee& from) {
 }
 
 void employee::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:employee)
+// @@protoc_insertion_point(generalized_copy_from_start:ACTIA.employee)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void employee::CopyFrom(const employee& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:employee)
+// @@protoc_insertion_point(class_specific_copy_from_start:ACTIA.employee)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -524,7 +527,7 @@ void employee::InternalSwap(employee* other) {
 void employees::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int employees::kEmployeesFieldNumber;
+const int employees::kEnsembleFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 employees::employees()
@@ -532,21 +535,21 @@ employees::employees()
   ::google::protobuf::internal::InitSCC(
       &protobuf_employees_2eproto::scc_info_employees.base);
   SharedCtor();
-  // @@protoc_insertion_point(constructor:employees)
+  // @@protoc_insertion_point(constructor:ACTIA.employees)
 }
 employees::employees(const employees& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
-      employees_(from.employees_) {
+      ensemble_(from.ensemble_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:employees)
+  // @@protoc_insertion_point(copy_constructor:ACTIA.employees)
 }
 
 void employees::SharedCtor() {
 }
 
 employees::~employees() {
-  // @@protoc_insertion_point(destructor:employees)
+  // @@protoc_insertion_point(destructor:ACTIA.employees)
   SharedDtor();
 }
 
@@ -568,12 +571,12 @@ const employees& employees::default_instance() {
 
 
 void employees::Clear() {
-// @@protoc_insertion_point(message_clear_start:employees)
+// @@protoc_insertion_point(message_clear_start:ACTIA.employees)
   ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  employees_.Clear();
+  ensemble_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -581,18 +584,18 @@ bool employees::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:employees)
+  // @@protoc_insertion_point(parse_start:ACTIA.employees)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .employee employees = 3;
+      // repeated .ACTIA.employee ensemble = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_employees()));
+                input, add_ensemble()));
         } else {
           goto handle_unusual;
         }
@@ -611,26 +614,26 @@ bool employees::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:employees)
+  // @@protoc_insertion_point(parse_success:ACTIA.employees)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:employees)
+  // @@protoc_insertion_point(parse_failure:ACTIA.employees)
   return false;
 #undef DO_
 }
 
 void employees::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:employees)
+  // @@protoc_insertion_point(serialize_start:ACTIA.employees)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .employee employees = 3;
+  // repeated .ACTIA.employee ensemble = 3;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->employees_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->ensemble_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       3,
-      this->employees(static_cast<int>(i)),
+      this->ensemble(static_cast<int>(i)),
       output);
   }
 
@@ -638,34 +641,34 @@ void employees::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
   }
-  // @@protoc_insertion_point(serialize_end:employees)
+  // @@protoc_insertion_point(serialize_end:ACTIA.employees)
 }
 
 ::google::protobuf::uint8* employees::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:employees)
+  // @@protoc_insertion_point(serialize_to_array_start:ACTIA.employees)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .employee employees = 3;
+  // repeated .ACTIA.employee ensemble = 3;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->employees_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->ensemble_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        3, this->employees(static_cast<int>(i)), deterministic, target);
+        3, this->ensemble(static_cast<int>(i)), deterministic, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:employees)
+  // @@protoc_insertion_point(serialize_to_array_end:ACTIA.employees)
   return target;
 }
 
 size_t employees::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:employees)
+// @@protoc_insertion_point(message_byte_size_start:ACTIA.employees)
   size_t total_size = 0;
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -673,14 +676,14 @@ size_t employees::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .employee employees = 3;
+  // repeated .ACTIA.employee ensemble = 3;
   {
-    unsigned int count = static_cast<unsigned int>(this->employees_size());
+    unsigned int count = static_cast<unsigned int>(this->ensemble_size());
     total_size += 1UL * count;
     for (unsigned int i = 0; i < count; i++) {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->employees(static_cast<int>(i)));
+          this->ensemble(static_cast<int>(i)));
     }
   }
 
@@ -690,39 +693,39 @@ size_t employees::ByteSizeLong() const {
 }
 
 void employees::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:employees)
+// @@protoc_insertion_point(generalized_merge_from_start:ACTIA.employees)
   GOOGLE_DCHECK_NE(&from, this);
   const employees* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const employees>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:employees)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ACTIA.employees)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:employees)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ACTIA.employees)
     MergeFrom(*source);
   }
 }
 
 void employees::MergeFrom(const employees& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:employees)
+// @@protoc_insertion_point(class_specific_merge_from_start:ACTIA.employees)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  employees_.MergeFrom(from.employees_);
+  ensemble_.MergeFrom(from.ensemble_);
 }
 
 void employees::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:employees)
+// @@protoc_insertion_point(generalized_copy_from_start:ACTIA.employees)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void employees::CopyFrom(const employees& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:employees)
+// @@protoc_insertion_point(class_specific_copy_from_start:ACTIA.employees)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -738,7 +741,7 @@ void employees::Swap(employees* other) {
 }
 void employees::InternalSwap(employees* other) {
   using std::swap;
-  CastToBase(&employees_)->InternalSwap(CastToBase(&other->employees_));
+  CastToBase(&ensemble_)->InternalSwap(CastToBase(&other->ensemble_));
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
@@ -749,13 +752,14 @@ void employees::InternalSwap(employees* other) {
 
 
 // @@protoc_insertion_point(namespace_scope)
+}  // namespace ACTIA
 namespace google {
 namespace protobuf {
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::employee* Arena::CreateMaybeMessage< ::employee >(Arena* arena) {
-  return Arena::CreateInternal< ::employee >(arena);
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ACTIA::employee* Arena::CreateMaybeMessage< ::ACTIA::employee >(Arena* arena) {
+  return Arena::CreateInternal< ::ACTIA::employee >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::employees* Arena::CreateMaybeMessage< ::employees >(Arena* arena) {
-  return Arena::CreateInternal< ::employees >(arena);
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::ACTIA::employees* Arena::CreateMaybeMessage< ::ACTIA::employees >(Arena* arena) {
+  return Arena::CreateInternal< ::ACTIA::employees >(arena);
 }
 }  // namespace protobuf
 }  // namespace google
