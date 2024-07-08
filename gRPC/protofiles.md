@@ -1,1 +1,8 @@
-
+- `MyMessage::MyMessage()`
+- `MyMessage::~MyMessage()`
+- `MyMessage::SerializeToString(std::string* output) const`
+- `MyMessage::ParseFromString(const std::string& data)`
+- `MyMessage::id() const`
+- `MyMessage::set_id(int32_t value)`
+- `MyMessage::name() const`
+- `MyMessage::set_name(const std::string& value)`
