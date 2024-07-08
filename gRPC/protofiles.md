@@ -19,10 +19,11 @@
     - `bool IsInitialized() const;`: Checks if all required fields have been set.  
 
 5. **Getters**
-   
-- `MyMessage::id() const`
-- `MyMessage::name() const`
+     
+  - `MyMessage::id() const`
+  - `MyMessage::name() const`
 
 6. **Setters**
-- `MyMessage::set_id(int32_t value)`
-- `MyMessage::set_name(const std::string& value)`
+   
+  - `MyMessage::set_id(int32_t value)`
+  - `MyMessage::set_name(const std::string& value)`
