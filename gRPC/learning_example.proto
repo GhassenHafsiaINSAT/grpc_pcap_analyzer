@@ -1,0 +1,19 @@
+syntax = "proto3"; 
+
+
+package Actia; 
+
+message point { 
+    int32 id = 1;
+    string nom = 2;  
+}
+
+message feature {
+    int32 id = 1; 
+    string nom = 2; 
+}
+
+service CheckIn {
+    rpc GetFeature (point) returns (feature) {};
+}
+
