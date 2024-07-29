@@ -31,4 +31,3 @@ void rcp_handle(const u_char *packet, u_int length) {
     printf("RCP: ");
     rcp_print(packet, length);
 }
-}
