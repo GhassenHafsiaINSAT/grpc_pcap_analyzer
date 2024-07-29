@@ -3,8 +3,8 @@
 
 
 // Function to simulate server-side logic for GetFeature RPC
-Actia::feature GetFeature(const Actia::point& request) {
-    Actia::feature response;
+feature GetFeature(const point& request) {
+    feature response;
     response.set_id(request.id() + 100);  // Simulated logic: id + 100
     response.set_nom("Feature " + request.nom());  // Simulated logic: prepend "Feature "
     return response;
@@ -12,13 +12,13 @@ Actia::feature GetFeature(const Actia::point& request) {
 
 int main(){
 
-    Actia::point point_request; 
+    point point_request; 
     point_request.set_id(123); 
     point_request.set_nom("hello"); 
 
 
-    Actia::feature feature_response;
-    feature_response =  GetFeature(point_request); 
+    feature feature_response;
+    feature_response = GetFeature(point_request); 
 
     std::cout<<"We have a message recieved"<<std::endl;
     std::cout<<"Its ID is" << feature_response.id()<< std::endl; 
