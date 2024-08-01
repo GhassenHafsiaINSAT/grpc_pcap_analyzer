@@ -21,7 +21,7 @@ void rcp_print(const u_char *packet, u_int length){
     if (length > 11) {
         printf("Payload: ");
         for (u_int i = 11; i < length; i++) {
-            printf("%02x ", packet[i]);
+            printf("%02x", packet[i]);
         }
         printf("\n");
     }
