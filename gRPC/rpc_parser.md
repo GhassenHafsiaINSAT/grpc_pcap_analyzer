@@ -4,24 +4,25 @@
     - **the destinationIP address**: 4 bytes 
     - **the playload length**: 2  bytes 
 
-### Converting Playload length : 
-    - The playload is a 2-byte integer value, when transmitted over the network, it is in network byte order (big-endian), we need to convert it from network byte order to host byte order to correctly interpret this value on host machine.  
+## Networking layers 
 
-    - `inet_ntoa` converts the binary IP address to a dotted-decimal string for readability
-### Why Not Convert Other Fields?
+1. **Ethernet layer**: data link layer whre network frames are transfered over physical media.  
 
-    - **Version**: It is a single byte, so byte order conversion is unnecessary.
-    - **Source and Destination IP Addresses**: These are handled by the `inet_ntoa` function, which converts the binary IP address to a readable string. The IP address itself is treated as a sequence of bytes, so explicit conversion is not required.
+2. **IP layer**: This is layer where packets are routed from source to destination. 
 
+3. **TCP layer**: This is transport layer that ensures reliable data transmission. 
 
-### `struct in_addr`
+4. **HTTP/2 layer**: This is an application layer protocol that gRPC uses for transport.  
 
-```c
-struct in_addr {
-    unit32_t s_addr;    
-};
-```
+5. **gRPC layer**: This is an RPC framework that send and recieves messagers over HTTP/2.  
 
-- `unit32_t` is a 32 bit integer that holds IPv4 address, the address is stored in network byte order.
+## Identifying gRPC traffic
+the http tells the client or the server what type of data is sent, for gRPC 
 
-- The `struct in_addr` is used for setting up Socket addresses and IP address conversion.  
+1. **Capture Ethernet Frames**: Using tcpdump we can capture ethernet frames while reading directly from the network interface
+2. **Extract IP packets**: Check if the etherent frame contains IP packet.  
+3. **Extract TCP segments**: check the protocol field in IP packet to see if it indicates TCP (proto number 6).  
+4. **Identify HTTP/2 traffic**: gRPC uses http/2 as transport protocol, HTTP traffic is usually on ports 80 (unsecured) and 443 (secured with SSL/TLS), look for http headers in TCP playload. 
+5. **Check for gRPC indicators** 
+- check for http headers that contain "content-type: application/grpc" 
+- look for gRPC-specific metadata headers like "grpc-status" and "grpc-message".
