@@ -17,3 +17,29 @@
 4. **Transport layer**: HTTP/2 uses TCP at the transport layer.  
 5. **Network layer**: The packet is encapsulated in IP packet (IPv4 or IPv6)
 6. **data link layer**: the IP packet is encapsultaed inan ethernet frame.  
+
+## Core concepts, architecture and lifecycle
+- gRPC lets you define four kinds of service methodes
+1. **Unary RPCs**, where the client sends a single request to the server and gets a single response back
+
+```proto
+rpc sayHello (HelloRequest) returns (HelloResponse); 
+```
+
+2.**Server Streaming RPCs**, where the client sends a request to the server and gets a stream to read a sequence of messages back
+
+```proto
+rpc sayHello(HelloRequest) returns (stream HelloResponse); 
+```
+
+3. **Client Streaming RPCs**, where the client writes a sequence of messages to the server, and when it finishes it gets a reponse from the server.  
+
+```proto
+rpc sayHello (stream HelloRequest) returns (HelloResponse);
+```
+
+4. **Bidirectional Streaming RPCs**, where both sides send a sequence of messages using a read-write stream.
+
+```proto
+rpc sayHello (stream HelloRequest) returns (stream HelloResponse);
+```
