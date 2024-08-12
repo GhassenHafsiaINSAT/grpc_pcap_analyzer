@@ -26,3 +26,41 @@ the http tells the client or the server what type of data is sent, for gRPC
 5. **Check for gRPC indicators** 
 - check for http headers that contain "content-type: application/grpc" 
 - look for gRPC-specific metadata headers like "grpc-status" and "grpc-message".
+
+
+## Integer Types
+
+    %d or %i: Signed integer
+    %u: Unsigned integer
+    %o: Unsigned octal
+    %x: Unsigned hexadecimal (lowercase)
+    %X: Unsigned hexadecimal (uppercase)
+    %hd: Short signed integer
+    %hu: Short unsigned integer
+    %ld: Long signed integer
+    %lu: Long unsigned integer
+    %lld: Long long signed integer
+    %llu: Long long unsigned integer
+
+## Floating-Point Types
+
+    %f: Floating-point number
+    %e: Scientific notation (lowercase)
+    %E: Scientific notation (uppercase)
+    %g: Automatic choice between %f and %e
+    %lf: Double floating-point number (though %f is typically used)
+
+## Character and String Types
+
+    %c: Single character
+    %s: String (character array)
+
+## Pointers
+
+    %p: Pointer address (prints as a hexadecimal)
+
+## Other
+
+    %%: Prints a literal % character
+
+## `ip_hdr` structure 

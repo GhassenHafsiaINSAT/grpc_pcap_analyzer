@@ -110,6 +110,73 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named MyExecutable
+
+# Build rule for target.
+MyExecutable: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 MyExecutable
+.PHONY : MyExecutable
+
+# fast build rule for target.
+MyExecutable/fast:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/build
+.PHONY : MyExecutable/fast
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/main.cpp.s
+.PHONY : main.cpp.s
+
+your_file.pb.o: your_file.pb.cc.o
+
+.PHONY : your_file.pb.o
+
+# target to build an object file
+your_file.pb.cc.o:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/your_file.pb.cc.o
+.PHONY : your_file.pb.cc.o
+
+your_file.pb.i: your_file.pb.cc.i
+
+.PHONY : your_file.pb.i
+
+# target to preprocess a source file
+your_file.pb.cc.i:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/your_file.pb.cc.i
+.PHONY : your_file.pb.cc.i
+
+your_file.pb.s: your_file.pb.cc.s
+
+.PHONY : your_file.pb.s
+
+# target to generate assembly for a file
+your_file.pb.cc.s:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/your_file.pb.cc.s
+.PHONY : your_file.pb.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -118,6 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... MyExecutable"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
+	@echo "... your_file.pb.o"
+	@echo "... your_file.pb.i"
+	@echo "... your_file.pb.s"
 .PHONY : help
 
 

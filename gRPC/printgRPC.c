@@ -1,112 +1,103 @@
-/* this program uses libcalp to capture network packets and inspect them in order to identify gRPC traffic by looking for specific HTTP/2 indicators within the playload.  
-*/
+#include <stdio.h>
+#include <stdlib.h>  
+#include <pcap.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <string.h>
+#include <stdint.h>
+#include <time.h>
+#include <arpa/inet.h>
 
-#include <pcap.h>               // inculdes functions for packet capture
-#include <stdio.h>              // input/output
-#include <stdlib.h>             // memory allocation     
-#include <string.h>             // string manipulation 
-#include <netinet/ip.h>         // provide structures for IP headers
-#include <netinet/tcp.h>        // provide structures for TCP headers
+#define ETHERNET_HEADER_LEN 14
+#define HTTP2_FRAME_HEADER_LEN 9
+#define GRPC_CONTENT_TYPE "application/grpc"
+#define GRPC_CONTENT_TYPE_LEN (sizeof(GRPC_CONTENT_TYPE) - 1)
 
-#define SIZE_ETHERNET 14        // defines size of ethernet header 
+void print_packet_info(const struct ip *ip, const struct tcphdr *tcp, const char *timestamp) {
+    char src_ip[INET_ADDRSTRLEN], dst_ip[INET_ADDRSTRLEN];
+    inet_ntop(AF_INET, &(ip->ip_src), src_ip, INET_ADDRSTRLEN);
+    inet_ntop(AF_INET, &(ip->ip_dst), dst_ip, INET_ADDRSTRLEN);
+    printf("%s IP %s.%d > %s.%d: gRPC\n", 
+        timestamp, 
+        src_ip, ntohs(tcp->th_sport), 
+        dst_ip, ntohs(tcp->th_dport));
+}
 
-/* Ethernet header */
-struct ethernet_header {
-    u_char ether_dhost[6]; /* Destination host address */
-    u_char ether_shost[6]; /* Source host address */
-    u_short ether_type;    /* type of encapsulated protocol*/
-};
+void process_packet(const unsigned char *packet, int length, uint16_t grpc_port) {
+    const struct ip *ip = (const struct ip *)(packet + ETHERNET_HEADER_LEN); // Skip Ethernet header
+    int ip_header_length = ip->ip_hl * 4; // Calculate IP header length
+    const struct tcphdr *tcp = (const struct tcphdr *)(packet + ETHERNET_HEADER_LEN + ip_header_length);
+    int tcp_header_length = tcp->th_off * 4; // Calculate TCP header length
 
-/* Callback function invoked by libpcap for every captured packet */
-void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *packet) {
-    const struct ethernet_header *ethernet;
-    const struct ip *ip;
-    const struct tcphdr *tcp;
-    const char *payload;
-    int size_ip;
-    int size_tcp;
-    int size_payload;
+    // Check if the packet is using the gRPC port
+    if (ntohs(tcp->th_sport) != grpc_port || ntohs(tcp->th_dport) == grpc_port) {
+        struct timespec ts;
+        clock_gettime(CLOCK_REALTIME, &ts);
+        char timestamp[100];
+        strftime(timestamp, sizeof(timestamp), "%H:%M:%S", localtime(&ts.tv_sec));
+        sprintf(timestamp + strlen(timestamp), ".%06ld", ts.tv_nsec / 1000); // Append microseconds
 
+        print_packet_info(ip, tcp, timestamp);
 
-    ethernet = (struct ethernet_header*)(packet);
-    // Access the destination MAC address
-    u_char *destination = ethernet->dest_mac;
+        // Check for HTTP/2 connection preface
+        const unsigned char *http2_header = packet + ETHERNET_HEADER_LEN + ip_header_length + tcp_header_length;
+        int remaining_len = length - (ETHERNET_HEADER_LEN + ip_header_length + tcp_header_length);
 
-    // Access the source MAC address
-    u_char *source = ethernet->src_mac;
+        // Handle HTTP/2 connection preface
+        if (remaining_len >= 24 && memcmp(http2_header, "PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n", 24) == 0) {
+            http2_header += 24; // Skip connection preface
+            remaining_len -= 24;
+        }
 
-    // Access the EtherType field
-    u_short ether_type = ntohs(ethernet->ether_type);
+        // Loop through the HTTP/2 frames
+        while (remaining_len >= HTTP2_FRAME_HEADER_LEN) {
+            uint32_t frame_length = (http2_header[0] << 16) | (http2_header[1] << 8) | http2_header[2];
+            uint8_t frame_type = http2_header[3];
 
-    ip = (struct ip*)(packet + SIZE_ETHERNET);
-    size_ip = ip->ip_hl * 4;
-    if (size_ip < 20) {
-        printf("Invalid IP header length: %u bytes\n", size_ip);
-        return;
-    }
+            // Check for DATA frame (type 0x0)
+            if (frame_type == 0x0) {
+                if (remaining_len >= (HTTP2_FRAME_HEADER_LEN + frame_length)) {
+                    // Check for gRPC content type in the payload
+                    if (frame_length >= GRPC_CONTENT_TYPE_LEN &&
+                        memcmp(http2_header + HTTP2_FRAME_HEADER_LEN, GRPC_CONTENT_TYPE, GRPC_CONTENT_TYPE_LEN) == 0) {
+                        print_packet_info(ip, tcp, timestamp);
+                    }
+                }
+            }
 
-    if (ip->ip_p != IPPROTO_TCP) {
-        return; // Not TCP
-    }
-
-    tcp = (struct tcphdr*)(packet + SIZE_ETHERNET + size_ip);
-    size_tcp = tcp->th_off * 4;
-    if (size_tcp < 20) {
-        printf("Invalid TCP header length: %u bytes\n", size_tcp);
-        return;
-    }
-
-    payload = (u_char *)(packet + SIZE_ETHERNET + size_ip + size_tcp);
-    size_payload = ntohs(ip->ip_len) - (size_ip + size_tcp);
-
-    if (size_payload > 0) {
-        // Check for HTTP/2 frames and gRPC-specific indicators in the payload
-        if (strstr(payload, "application/grpc") != NULL) {
-            printf("gRPC traffic detected\n");
+            http2_header += HTTP2_FRAME_HEADER_LEN + frame_length;
+            remaining_len -= HTTP2_FRAME_HEADER_LEN + frame_length;
         }
     }
 }
 
+void packet_handler(unsigned char *args, const struct pcap_pkthdr *header, const unsigned char *packet) {
+    uint16_t grpc_port = *((uint16_t *)args);
+    process_packet(packet, header->len, grpc_port);
+}
+
 int main(int argc, char *argv[]) {
-    char *dev = NULL;
-    char errbuf[PCAP_ERRBUF_SIZE];
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <pcap file>", argv[0]);
+        return 1;
+    }
+
+    char *filename = argv[1];
+    uint16_t grpc_port = atoi(argv[2]);
     pcap_t *handle;
-    char filter_exp[] = "tcp port 80 or tcp port 443"; // Adjust the filter for HTTP/2 traffic
-    struct bpf_program fp;
-    bpf_u_int32 net;
+    char errbuf[PCAP_ERRBUF_SIZE];
 
-    if (argc == 2) {
-        dev = argv[1];
-    } else {
-        dev = pcap_lookupdev(errbuf);
-        if (dev == NULL) {
-            fprintf(stderr, "Couldn't find default device: %s\n", errbuf);
-            return(2);
-        }
-    }
-
-    printf("Device: %s\n", dev);
-
-    handle = pcap_open_live(dev, BUFSIZ, 1, 1000, errbuf);
+    // Open the pcap file
+    handle = pcap_open_offline(filename, errbuf);
     if (handle == NULL) {
-        fprintf(stderr, "Couldn't open device %s: %s\n", dev, errbuf);
-        return(2);
+        fprintf(stderr, "Could not open file %s: %s\n", filename, errbuf);
+        return 1;
     }
 
-    if (pcap_compile(handle, &fp, filter_exp, 0, net) == -1) {
-        fprintf(stderr, "Couldn't parse filter %s: %s\n", filter_exp, pcap_geterr(handle));
-        return(2);
-    }
+    // Process each packet in the pcap file
+    pcap_loop(handle, 0, packet_handler, (unsigned char *)&grpc_port);
 
-    if (pcap_setfilter(handle, &fp) == -1) {
-        fprintf(stderr, "Couldn't install filter %s: %s\n", filter_exp, pcap_geterr(handle));
-        return(2);
-    }
-
-    pcap_loop(handle, 0, got_packet, NULL);
-
-    pcap_freecode(&fp);
+    // Close the pcap file
     pcap_close(handle);
-
-    return(0);
+    return 0;
 }

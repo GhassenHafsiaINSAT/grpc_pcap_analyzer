@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/ghassen/Documents/GitHub/Protobuf-Tcpdump-Wireshark-Lea
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all:
+all: CMakeFiles/MyExecutable.dir/all
 
 .PHONY : all
 
@@ -63,9 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean:
+clean: CMakeFiles/MyExecutable.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/MyExecutable.dir
+
+# All Build rule for target.
+CMakeFiles/MyExecutable.dir/all:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/depend
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ghassen/Documents/GitHub/Protobuf-Tcpdump-Wireshark-Learning/gRPC/ProtoFiles/build/CMakeFiles --progress-num=1,2,3,4 "Built target MyExecutable"
+.PHONY : CMakeFiles/MyExecutable.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/MyExecutable.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ghassen/Documents/GitHub/Protobuf-Tcpdump-Wireshark-Learning/gRPC/ProtoFiles/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/MyExecutable.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ghassen/Documents/GitHub/Protobuf-Tcpdump-Wireshark-Learning/gRPC/ProtoFiles/build/CMakeFiles 0
+.PHONY : CMakeFiles/MyExecutable.dir/rule
+
+# Convenience name for target.
+MyExecutable: CMakeFiles/MyExecutable.dir/rule
+
+.PHONY : MyExecutable
+
+# clean rule for target.
+CMakeFiles/MyExecutable.dir/clean:
+	$(MAKE) -f CMakeFiles/MyExecutable.dir/build.make CMakeFiles/MyExecutable.dir/clean
+.PHONY : CMakeFiles/MyExecutable.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

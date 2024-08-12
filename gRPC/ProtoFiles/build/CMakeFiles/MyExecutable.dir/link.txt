@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/MyExecutable.dir/main.cpp.o CMakeFiles/MyExecutable.dir/your_file.pb.cc.o  -o MyExecutable  /usr/local/lib/libprotobuf.a -lpthread 
