@@ -1,31 +1,3 @@
-### The minimum size of rpc packet is 11?
-    - **the version**: 1 byte
-    - **the sourceIP address**: 4 bytes
-    - **the destinationIP address**: 4 bytes 
-    - **the playload length**: 2  bytes 
-
-## Networking layers 
-
-1. **Ethernet layer**: data link layer whre network frames are transfered over physical media.  
-
-2. **IP layer**: This is layer where packets are routed from source to destination. 
-
-3. **TCP layer**: This is transport layer that ensures reliable data transmission. 
-
-4. **HTTP/2 layer**: This is an application layer protocol that gRPC uses for transport.  
-
-5. **gRPC layer**: This is an RPC framework that send and recieves messagers over HTTP/2.  
-
-## Identifying gRPC traffic
-the http tells the client or the server what type of data is sent, for gRPC 
-
-1. **Capture Ethernet Frames**: Using tcpdump we can capture ethernet frames while reading directly from the network interface
-2. **Extract IP packets**: Check if the etherent frame contains IP packet.  
-3. **Extract TCP segments**: check the protocol field in IP packet to see if it indicates TCP (proto number 6).  
-4. **Identify HTTP/2 traffic**: gRPC uses http/2 as transport protocol, HTTP traffic is usually on ports 80 (unsecured) and 443 (secured with SSL/TLS), look for http headers in TCP playload. 
-5. **Check for gRPC indicators** 
-- check for http headers that contain "content-type: application/grpc" 
-- look for gRPC-specific metadata headers like "grpc-status" and "grpc-message".
 
 // Check for HTTP/2 connection preface
         const unsigned char *http2_header = packet + ETHERNET_HEADER_LEN + ip_header_length + tcp_header_length;
@@ -61,6 +33,55 @@ the http tells the client or the server what type of data is sent, for gRPC
 
 
 
+0000   00 00 00 00 00 00 00 00 00 00 00 00 86 dd 60 06
+0010   78 b8 01 40 06 40 00 00 00 00 00 00 00 00 00 00
+0020   00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00
+0030   00 00 00 00 00 01 97 24 c3 83 8e 13 ef 61 3f f8
+0040   ef 5e 80 18 02 00 01 48 00 00 01 01 08 0a 1f 52
+0050   99 69 1f 52 99 68 00 00 00 04 01 00 00 00 00 00
+0060   00 d8 01 04 00 00 00 01 40 05 3a 70 61 74 68 1b
+0070   2f 65 78 61 6d 70 6c 65 2e 43 68 65 63 6b 49 6e
+0080   2f 47 65 74 46 65 61 74 75 72 65 40 0a 3a 61 75
+0090   74 68 6f 72 69 74 79 0f 6c 6f 63 61 6c 68 6f 73
+00a0   74 3a 35 30 30 35 31 83 86 40 0c 63 6f 6e 74 65
+00b0   6e 74 2d 74 79 70 65 10 61 70 70 6c 69 63 61 74
+00c0   69 6f 6e 2f 67 72 70 63 40 02 74 65 08 74 72 61
+00d0   69 6c 65 72 73 40 14 67 72 70 63 2d 61 63 63 65
+00e0   70 74 2d 65 6e 63 6f 64 69 6e 67 17 69 64 65 6e
+00f0   74 69 74 79 2c 20 64 65 66 6c 61 74 65 2c 20 67
+0100   7a 69 70 40 0a 75 73 65 72 2d 61 67 65 6e 74 30
+0110   67 72 70 63 2d 70 79 74 68 6f 6e 2f 31 2e 36 35
+0120   2e 34 20 67 72 70 63 2d 63 2f 34 32 2e 30 2e 30
+0130   20 28 6c 69 6e 75 78 3b 20 63 68 74 74 70 32 29
+0140   00 00 04 08 00 00 00 00 01 00 00 00 05 00 00 13
+0150   00 01 00 00 00 01 00 00 00 00 0e 08 01 12 0a 54
+0160   65 73 74 20 50 6f 69 6e 74 00 00 04 08 00 00 00
+0170   00 00 00 00 00 05
+
+0000   00 00 00 00 00 00 00 00 00 00 00 00 86 dd 60 06   ..............`.
+0010   78 b8 01 40 06 40 00 00 00 00 00 00 00 00 00 00   x..@.@..........
+0020   00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00   ................
+0030   00 00 00 00 00 01 97 24 c3 83 8e 13 ef 61 3f f8   .......$.....a?.
+0040   ef 5e 80 18 02 00 01 48 00 00 01 01 08 0a 1f 52   .^.....H.......R
+0050   99 69 1f 52 99 68 00 00 00 04 01 00 00 00 00 00   .i.R.h..........
+0060   00 d8 01 04 00 00 00 01 40 05 3a 70 61 74 68 1b   ........@.:path.
+0070   2f 65 78 61 6d 70 6c 65 2e 43 68 65 63 6b 49 6e   /example.CheckIn
+0080   2f 47 65 74 46 65 61 74 75 72 65 40 0a 3a 61 75   /GetFeature@.:au
+0090   74 68 6f 72 69 74 79 0f 6c 6f 63 61 6c 68 6f 73   thority.localhos
+00a0   74 3a 35 30 30 35 31 83 86 40 0c 63 6f 6e 74 65   t:50051..@.conte
+00b0   6e 74 2d 74 79 70 65 10 61 70 70 6c 69 63 61 74   nt-type.applicat
+00c0   69 6f 6e 2f 67 72 70 63 40 02 74 65 08 74 72 61   ion/grpc@.te.tra
+00d0   69 6c 65 72 73 40 14 67 72 70 63 2d 61 63 63 65   ilers@.grpc-acce
+00e0   70 74 2d 65 6e 63 6f 64 69 6e 67 17 69 64 65 6e   pt-encoding.iden
+00f0   74 69 74 79 2c 20 64 65 66 6c 61 74 65 2c 20 67   tity, deflate, g
+0100   7a 69 70 40 0a 75 73 65 72 2d 61 67 65 6e 74 30   zip@.user-agent0
+0110   67 72 70 63 2d 70 79 74 68 6f 6e 2f 31 2e 36 35   grpc-python/1.65
+0120   2e 34 20 67 72 70 63 2d 63 2f 34 32 2e 30 2e 30   .4 grpc-c/42.0.0
+0130   20 28 6c 69 6e 75 78 3b 20 63 68 74 74 70 32 29    (linux; chttp2)
+0140   00 00 04 08 00 00 00 00 01 00 00 00 05 00 00 13   ................
+0150   00 01 00 00 00 01 00 00 00 00 0e 08 01 12 0a 54   ...............T
+0160   65 73 74 20 50 6f 69 6e 74 00 00 04 08 00 00 00   est Point.......
+0170   00 00 00 00 00 05                                 ......
 
 
 

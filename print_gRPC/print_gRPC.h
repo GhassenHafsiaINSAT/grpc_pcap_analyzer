@@ -50,11 +50,19 @@ struct tcp_hdr {
     uint16_t dst_port;
     uint32_t seq_num;
     uint32_t ack_num;
-    uint8_t data_offset_reserved;
+    uint8_t data_offset;
     uint8_t flags;
     uint16_t window;
     uint16_t checksum;
     uint16_t urgent_pointer;
+};
+
+struct http2_hdr {
+    uint32_t length : 24;
+    uint8_t type;
+    uint8_t flags;
+    uint32_t reserved : 1;
+    uint32_t stream_id : 31;
 };
 
 
