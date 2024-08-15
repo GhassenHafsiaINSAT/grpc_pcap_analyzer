@@ -65,22 +65,33 @@ struct http2_hdr {
     uint32_t stream_id : 31;
 };
 
-
-/* The function retrieves the current time with high precision using clock_gettime.
-It formats the time into a string in HH:MM:SS format and appends the microseconds to the timestamp. */
-void print_time(); 
+// The equivalent hexadecimal sequence for `@. content-type. application/grpc`
+unsigned char target_sequence[] = {
+    0x40, 0x0c, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x74, 
+    0x79, 0x70, 0x65, 0x10, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 
+    0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x67, 0x72, 0x70, 0x63
+};
 
 
 // This function prints out the packet using basic for loop
 void print_packet(const unsigned char *packet, int length); 
 
-/* This function prints out the packet info, including:
+// This function prints out the Ethernet header info 
+void print_MAC_info(struct ethernet_hdr *hdr); 
+
+// This function prints out IPv6 header info 
+void print_IPv6_info(struct ipv6_hdr *eth);
+
+// This function prints out TCP header info 
+void print_tcp_info(struct tcp_hdr *tcp);
+
+/* This function prints out if the packet contains gRPC message, indicating:
     - timestamp
+    - gRPC protocol 
     - src_ip
     - dst_ip
-    - protocol used 
 */
-void print_packet_info(const struct ip *ip, const struct tcphdr *tcp, const char *timestamp); 
+void print_packet_info(struct ipv6_hdr *ip, struct tcp_hdr *tcp, const unsigned char *protocol); 
 
 // This function parses the pcap file in order to check if it's gRPC message or not 
 void process_packet(const unsigned char *packet, int length);
