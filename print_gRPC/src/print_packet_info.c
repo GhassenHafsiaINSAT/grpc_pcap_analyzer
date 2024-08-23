@@ -1,5 +1,4 @@
-#include "print_packet_info.h"
-
+#include "common.h"
 
 void print_packet_info(struct ipv6_hdr *ip6, struct tcp_hdr *tcp, const unsigned char *protocol) {
     struct timespec ts;

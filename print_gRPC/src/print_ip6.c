@@ -1,4 +1,4 @@
-#include "print_ip6.h"
+#include "common.h"
 
 struct ipv6_hdr* print_ip6(unsigned char packet, int len){    
 

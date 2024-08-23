@@ -1,9 +1,4 @@
 #include "common.h"
-#include "print_packet_info.h"
-#include "print_ethernet.h"
-#include "print_ip6.h"
-#include "print_tcp.h"
-
 
 void process_packet(const unsigned char *packet, int length) {
 
@@ -30,21 +25,27 @@ void process_packet(const unsigned char *packet, int length) {
                 int packet_len = length;
                 unsigned char *http2_header = (unsigned char *)packet + ETHERNET_HEADER_LEN + 40 + tcp_header_length;
                 
-                if(check_grpc_content_type(http2_header, packet_len) == 1){
-                    print_packet_info(ip6, tcp, "gRPC");
-                    return;
+                if(is_http2_frame(http2_header, packet_len) == 1){
+                    if (check_grpc_content_type(http2_header, packet_len) == 1){
+                         print_packet_info(ip6, tcp, "gRPC");
+                         return; 
+                    }
+                    else { 
+                        print_packet_info(ip6, tcp, "HTTP/2");
+                        return; 
+                    }
                 }
                 else{
-                    print_packet_info(ip6, tcp, "HTTP/2");
+                    print_packet_info(ip6, tcp, "HTTP");
                     return; 
                 }
             }
             
-            }
+        }
             
 
-        }
     }
+}
    /* else {
 
         struct ip4_hdr *ip4 = (struct ip4_hdr*)(packet + ETHERNET_HEADER_LEN); 

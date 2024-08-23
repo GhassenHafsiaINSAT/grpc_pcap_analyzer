@@ -35,14 +35,12 @@ typedef struct {
     uint32_t stream_id;
 } http2_frame_header_t;
 
-
-// Ethernet header
 struct ethernet_hdr {
     uint8_t dest_mac[6];
     uint8_t src_mac[6];
     uint16_t ethertype;
-};
 
+};  
 // IPv4 header
 struct ipv4_hdr {
     uint8_t version : 4;
@@ -90,11 +88,39 @@ struct http2_hdr {
     uint32_t stream_id : 31;
 };
 
+unsigned char target_sequence[] = {
+    0x40, 0x0c, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x74, 
+    0x79, 0x70, 0x65, 0x10, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 
+    0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x67, 0x72, 0x70, 0x63
+};
 
 
+// This function reads each packet separatly and calls the process_packet function
+void packet_handler(unsigned char *args, const struct pcap_pkthdr *header, const unsigned char *packet); 
+
+// This function parses the pcap file in order to check if it's gRPC message or not 
+void process_packet(const unsigned char *packet, int length);
+
+/* This function prints out if the packet contains gRPC message, indicating:
+    - timestamp
+    - gRPC protocol 
+    - src_ip
+    - dst_ip
+*/
+void print_packet_info(struct ipv6_hdr *ip, struct tcp_hdr *tcp, const unsigned char *protocol); 
 
 
+// This function prints out TCP header info 
+void print_tcp_info(struct tcp_hdr *tcp);
 
+// This function prints out IPv6 header info 
+void print_IPv6_info(struct ipv6_hdr *eth);
 
+// This function prints out the Ethernet header info 
+void print_MAC_info(struct ethernet_hdr *hdr); 
 
+int check_grpc_content_type(unsigned char *http2_header, int packet_len); 
 
+int is_http2_frame(const unsigned char *payload, int len); 
+
+struct ethernet_hdr print_ethernet(const unsigned char *packet, int len);
