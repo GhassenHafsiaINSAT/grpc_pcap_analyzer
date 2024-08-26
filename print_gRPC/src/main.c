@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Could not open file %s: %s\n", filename, errbuf);
         return 1;
     }
-    int i =0; 
+    
     pcap_loop(handle, 0, packet_handler, NULL); 
 
     pcap_close(handle);

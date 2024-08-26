@@ -1,17 +1,27 @@
 #include "common.h"
-
-int is_http2_frame(const unsigned char *payload, int len) {
-    if (len < 9)
-        return 0; 
+const char http2_preface[] = {
+    0x50, 0x52, 0x49, 0x20, 0x2a, 0x20, 0x48, 0x54, 
+    0x54, 0x50, 0x2f, 0x32, 0x2e, 0x30, 0x0d, 0x0a,
+    0x0d, 0x0a, 0x53, 0x4d, 0x0d, 0x0a, 0x0d, 0x0a
+};
     
-    // Check for HTTP/2 connection preface (first request in a connection)
-    const char http2_preface[] = "PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n";
-    if (len >= sizeof(http2_preface) - 1 && 
-        memcmp(payload, http2_preface, sizeof(http2_preface) - 1) == 0) {
-            return 1; 
+int is_http2(const unsigned char *ptr, int length) {
+    if (length < HTTP2_FRAME_HEADER_SIZE) {
+        return 0;
     }
 
-
-
+    char type = ptr[3];
+    printf("Type: %0x\n" ,type); 
+    if (length >= (int)(sizeof(http2_preface) - 1) && 
+        memcmp(ptr, http2_preface, sizeof(http2_preface) - 1) == 0)
+    {
+        return 1; 
+    }
+         
+    if (type <= 9)
+    {
+        return 1;  
+    }
+    
     return 0;
 }
