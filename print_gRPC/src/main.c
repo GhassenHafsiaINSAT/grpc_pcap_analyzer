@@ -1,5 +1,8 @@
 #include "common.h"
 
+
+int link_type;
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <pcap file>\n", argv[0]);
@@ -16,7 +19,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     
-    pcap_loop(handle, 0, packet_handler, NULL); 
+    link_type = pcap_datalink(handle);
+
+    pcap_loop(handle, 0, packet_handler_wrapper, NULL); 
 
     pcap_close(handle);
     return 0;

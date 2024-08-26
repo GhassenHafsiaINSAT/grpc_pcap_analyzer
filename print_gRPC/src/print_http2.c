@@ -15,6 +15,7 @@ int is_http2(const unsigned char *ptr, int length) {
     if (length >= (int)(sizeof(http2_preface) - 1) && 
         memcmp(ptr, http2_preface, sizeof(http2_preface) - 1) == 0)
     {
+        printf("HELLO FROM HTTP2"); 
         return 1; 
     }
          

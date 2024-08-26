@@ -13,14 +13,16 @@
 #include <string.h>
 
 #define ETHERNET_HEADER_LEN 14
+#define SSL_HEADER_LEN 16
 #define IP6_HEADER_LENGTH 40
 #define IP4_HEADER_LEN 20
 #define ETHERTYPE_IPV6 0x86DD
 #define ETHERTYPE_IPV4 0x0800
 #define NEXT_HEADER_TCP 0x06
-
-
 #define HTTP2_FRAME_HEADER_SIZE 9
+
+extern int link_type;
+
 
 typedef enum {
     FRAME_TYPE_DATA = 0x0,
@@ -41,6 +43,14 @@ struct http2_header {
     uint8_t type;
     uint8_t flags;
     uint32_t stream_id;
+};
+
+struct sll_hdr {
+    uint16_t packet_type;  
+    uint16_t address_type;  
+    uint16_t address_len;   
+    uint8_t address[8];     
+    uint16_t protocol;      
 };
 
 // Ethernet header
@@ -103,10 +113,10 @@ const char http2_preface[24];
 
 
 // This function reads each packet separatly and calls the process_packet function
-void packet_handler(unsigned char *args, const struct pcap_pkthdr *header, const unsigned char *packet); 
+void packet_handler(unsigned char *args, const struct pcap_pkthdr *header, const unsigned char *packet, int link_type); 
 
 // This function parses the pcap file in order to check if it's gRPC message or not 
-void process_packet(const unsigned char *packet, int length);
+void process_packet(const unsigned char *packet, int length, int link_type);
 
 /* This function prints out if the packet contains gRPC message, indicating:
     - timestamp
@@ -128,6 +138,8 @@ void print_MAC_info(struct ethernet_hdr *hdr);
 // This function prints out the HTTP2 header info 
 void print_http2_header(const unsigned char *ptr);
 
+void packet_handler_wrapper(unsigned char *args, const struct pcap_pkthdr *header, const unsigned char *packet);
+
 
 // It check if it http2 frame 
 int is_http2(const unsigned char *tptr, int length); 
@@ -136,10 +148,10 @@ int is_http2(const unsigned char *tptr, int length);
 int check_grpc_content_type(unsigned char *http2_header, int packet_len); 
 
 // It deals with Ethernet header 
-struct ethernet_hdr* print_ethernet(const unsigned char *packet);
+uint16_t get_protocol_type(const unsigned char* packet, int link_type);
 
 // It deals with IPv6 header 
-struct ipv6_hdr* print_ip6(const unsigned char *packet); 
+struct ipv6_hdr* print_ip6(const unsigned char *packet, int link_type); 
 
 // It deals with IPv4 header 
 struct ipv4_hdr* print_ip4(const unsigned char *packet); 

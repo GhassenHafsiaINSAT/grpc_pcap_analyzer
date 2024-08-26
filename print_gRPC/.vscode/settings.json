@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "string_view": "c"
+        "string_view": "c",
+        "common.h": "c"
     }
 }
