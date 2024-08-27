@@ -9,12 +9,10 @@ void process_packet(const unsigned char *packet, int length, int link_type) {
     if (ntohs(protocol) == ETHERTYPE_IPV6){
 
         struct ipv6_hdr* ip6 = print_ip6(packet, link_type); 
-        print_IPv6_info(ip6); 
 
         if (ip6->next_header == NEXT_HEADER_TCP){
             const unsigned char *packet6 = (const unsigned char *)ip6; 
             struct tcp_hdr* tcp = print_tcp(packet6);
-            // print_tcp_info(tcp); 
 
             int tcp_header_length = ((tcp->data_offset >> 4) & 0x0F) * 4;
             int ip6_playload_len = ntohs(ip6->payload_length); 
