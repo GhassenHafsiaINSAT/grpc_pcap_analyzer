@@ -1,0 +1,1 @@
+/opt/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android35-clang --sysroot=/opt/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/sysroot    CMakeFiles/test.dir/src/test.c.o  -o test 

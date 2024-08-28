@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ghassen/Documents/GitHub/grpc_pcap_analyzer/MyAndroidProject/src/test.c
+stdio.h
+-
+stdlib.h
+-
+
