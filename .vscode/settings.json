@@ -1,6 +1,14 @@
 {
-    "files.associations": {
-        "*.inc": "cpp",
-        "print_gRPC.C": "cpp"
-    }
+  "files.associations": {
+    "*.sqlbook": "sql",
+    "*.ndjson": "jsonl",
+    "*.dbclient-js": "javascript",
+    "*.inc": "cpp",
+    "print_gRPC.C": "cpp",
+    "internet": "c",
+    "pcap_parser_apis.h": "c",
+    "compare": "c",
+    "cstdint": "c",
+    "string_view": "c"
+  }
 }

@@ -1,7 +1,4 @@
-#include "common.h"
-
-
-int link_type;
+#include "pcap_parser_apis.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
