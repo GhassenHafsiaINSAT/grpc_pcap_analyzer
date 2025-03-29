@@ -10,7 +10,7 @@ void handle_pcap_file(unsigned char *args, const struct pcap_pkthdr *header, con
     packet_count++;  
         
     printf("Packet #%d\n", packet_count);
-        
-    process_packet(packet, header->len, link_type);
+    uint32_t length = (uint32_t)header->len; 
+    process_packet(packet, length, link_type);
     printf("\n"); 
 }

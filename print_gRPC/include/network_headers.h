@@ -31,6 +31,7 @@ typedef struct{
 ////////////////////////// IPv4 //////////////////////////
 
 #define IP4_HEADER_LEN 20
+#define IPV4_VERSION 4
 
 typedef struct{
     uint8_t version : 4;
@@ -43,12 +44,13 @@ typedef struct{
     uint8_t ttl;
     uint8_t proto;
     uint16_t csum;
-    uint32_t saddr;
-    uint32_t daddr;
+    uint8_t src_addr[4];       
+    uint8_t dest_addr[4]; 
 } IPV4_Typedef_t;
 
 ////////////////////////// IPv6 //////////////////////////
 #define IP6_HEADER_LENGTH 40
+#define IPV6_VERSION 6
 #define NEXT_HEADER_TCP 0x06
 
 typedef struct{
@@ -100,8 +102,5 @@ typedef enum {
     FRAME_TYPE_WINDOW_UPDATE = 0x8,
     FRAME_TYPE_CONTINUATION = 0x9
 } http2_frame_type_t;
-
-unsigned char target_sequence[32];
-const char http2_preface[24];
 
 #endif //COMMON_H
