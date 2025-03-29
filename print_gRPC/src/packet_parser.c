@@ -132,6 +132,3 @@ void parse_packet(const unsigned char *packet, int length, int link_type) {
         return;         
         }               
 }
-
-
-
